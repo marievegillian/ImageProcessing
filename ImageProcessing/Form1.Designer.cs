@@ -40,6 +40,9 @@
             invertToolStripMenuItem = new ToolStripMenuItem();
             sepiaToolStripMenuItem = new ToolStripMenuItem();
             histogramToolStripMenuItem = new ToolStripMenuItem();
+            redToolStripMenuItem = new ToolStripMenuItem();
+            greenToolStripMenuItem = new ToolStripMenuItem();
+            blueToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             menuStrip1.SuspendLayout();
@@ -120,36 +123,59 @@
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(162, 26);
+            copyToolStripMenuItem.Size = new Size(224, 26);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
             // grayToolStripMenuItem
             // 
             grayToolStripMenuItem.Name = "grayToolStripMenuItem";
-            grayToolStripMenuItem.Size = new Size(162, 26);
+            grayToolStripMenuItem.Size = new Size(224, 26);
             grayToolStripMenuItem.Text = "Gray";
             grayToolStripMenuItem.Click += grayToolStripMenuItem_Click;
             // 
             // invertToolStripMenuItem
             // 
             invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            invertToolStripMenuItem.Size = new Size(162, 26);
+            invertToolStripMenuItem.Size = new Size(224, 26);
             invertToolStripMenuItem.Text = "Invert";
             invertToolStripMenuItem.Click += invertToolStripMenuItem_Click;
             // 
             // sepiaToolStripMenuItem
             // 
             sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
-            sepiaToolStripMenuItem.Size = new Size(162, 26);
+            sepiaToolStripMenuItem.Size = new Size(224, 26);
             sepiaToolStripMenuItem.Text = "Sepia";
             sepiaToolStripMenuItem.Click += sepiaToolStripMenuItem_Click;
             // 
             // histogramToolStripMenuItem
             // 
+            histogramToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { redToolStripMenuItem, greenToolStripMenuItem, blueToolStripMenuItem });
             histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
-            histogramToolStripMenuItem.Size = new Size(162, 26);
+            histogramToolStripMenuItem.Size = new Size(224, 26);
             histogramToolStripMenuItem.Text = "Histogram";
+            histogramToolStripMenuItem.Click += histogramToolStripMenuItem_Click;
+            // 
+            // redToolStripMenuItem
+            // 
+            redToolStripMenuItem.Name = "redToolStripMenuItem";
+            redToolStripMenuItem.Size = new Size(224, 26);
+            redToolStripMenuItem.Text = "Red";
+            redToolStripMenuItem.Click += redToolStripMenuItem_Click;
+            // 
+            // greenToolStripMenuItem
+            // 
+            greenToolStripMenuItem.Name = "greenToolStripMenuItem";
+            greenToolStripMenuItem.Size = new Size(224, 26);
+            greenToolStripMenuItem.Text = "Green";
+            greenToolStripMenuItem.Click += greenToolStripMenuItem_Click;
+            // 
+            // blueToolStripMenuItem
+            // 
+            blueToolStripMenuItem.Name = "blueToolStripMenuItem";
+            blueToolStripMenuItem.Size = new Size(224, 26);
+            blueToolStripMenuItem.Text = "Blue";
+            blueToolStripMenuItem.Click += blueToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -166,6 +192,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             menuStrip1.ResumeLayout(false);
@@ -188,5 +215,8 @@
         private ToolStripMenuItem invertToolStripMenuItem;
         private ToolStripMenuItem sepiaToolStripMenuItem;
         private ToolStripMenuItem histogramToolStripMenuItem;
+        private ToolStripMenuItem redToolStripMenuItem;
+        private ToolStripMenuItem greenToolStripMenuItem;
+        private ToolStripMenuItem blueToolStripMenuItem;
     }
 }

@@ -58,7 +58,7 @@ namespace ImageProcessing
             return true;
         }
 
-  
+
         //For Color Inversion
         public bool ProcessImage1(Bitmap bmp1)
         {
@@ -95,7 +95,7 @@ namespace ImageProcessing
 
         }
 
-     
+
         //For Sepia
         public bool ProcessImage2(Bitmap bmp2)
         {
@@ -166,6 +166,109 @@ namespace ImageProcessing
             Bitmap copyBitmap = new Bitmap((Bitmap)pictureBox1.Image);
             ProcessImage2(copyBitmap);
             pictureBox2.Image = copyBitmap;
+        }
+
+        private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotRedHistogram((Bitmap)pictureBox1.Image);
+        }
+
+        private void greenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGreenHistogram((Bitmap)pictureBox1.Image);
+        }
+
+        private void blueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotBlueHistogram((Bitmap)pictureBox1.Image);
+        }
+
+        private void PlotRedHistogram(Bitmap image)
+        {
+            int[] redHistogram = new int[256];
+
+            // Calculate red histogram
+            for (int i = 0; i < image.Width; i++)
+            {
+                for (int j = 0; j < image.Height; j++)
+                {
+                    Color pixel = image.GetPixel(i, j);
+                    redHistogram[pixel.R]++;
+                }
+            }
+
+            // Plot red histogram on pictureBox2
+            PlotSingleChannelHistogram(redHistogram, Color.Red, pictureBox2);
+        }
+
+        private void PlotGreenHistogram(Bitmap image)
+        {
+            int[] greenHistogram = new int[256];
+
+            // Calculate green histogram
+            for (int i = 0; i < image.Width; i++)
+            {
+                for (int j = 0; j < image.Height; j++)
+                {
+                    Color pixel = image.GetPixel(i, j);
+                    greenHistogram[pixel.G]++;
+                }
+            }
+
+            // Plot green histogram on pictureBox2
+            PlotSingleChannelHistogram(greenHistogram, Color.Green, pictureBox2);
+        }
+
+        private void PlotBlueHistogram(Bitmap image)
+        {
+            int[] blueHistogram = new int[256];
+
+            // Calculate blue histogram
+            for (int i = 0; i < image.Width; i++)
+            {
+                for (int j = 0; j < image.Height; j++)
+                {
+                    Color pixel = image.GetPixel(i, j);
+                    blueHistogram[pixel.B]++;
+                }
+            }
+
+            // Plot blue histogram on pictureBox2
+            PlotSingleChannelHistogram(blueHistogram, Color.Blue, pictureBox2);
+        }
+
+        private void PlotSingleChannelHistogram(int[] histogram, Color color, PictureBox pictureBox)
+        {
+            Bitmap histogramImage = new Bitmap(pictureBox.Width, pictureBox.Height);
+            using (Graphics g = Graphics.FromImage(histogramImage))
+            {
+                int maxValue = 0;
+                for (int i = 0; i < histogram.Length; i++)
+                {
+                    if (histogram[i] > maxValue)
+                        maxValue = histogram[i];
+                }
+
+                float scaleFactor = pictureBox.Height / (float)maxValue;
+
+                for (int i = 0; i < histogram.Length; i++)
+                {
+                    int barHeight = (int)(histogram[i] * scaleFactor);
+                    g.DrawLine(new Pen(color), i, pictureBox.Height, i, pictureBox.Height - barHeight);
+                }
+            }
+
+            pictureBox.Image = histogramImage;
         }
     }
 }
